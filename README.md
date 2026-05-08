@@ -1,54 +1,54 @@
-# 4LDNS DNS Bot — команды и способы использования
+# 4LDNS DNS Bot — commands and usage
 
-Этот файл описывает все команды `ton_domain_bot.py` и основные сценарии использования бота для 4-значных DNS-доменов `.ton`.
+This document describes the commands in `ton_domain_bot.py` and the main ways to use the bot for 4-digit `.ton` DNS domains.
 
-## Быстрый старт
+## Quick start
 
-- Откройте чат бота и отправьте `/start`.
-- Для проверки конкретного домена: `/check 1234`
-- Для поиска свободных доменов: `/find <паттерн>`
-- Для случайного домена по тиру: `/random <тир>`
+- Open a chat with the bot and send `/start`.
+- Check a domain: `/check 1234`
+- Search free domains: `/find <pattern>`
+- Random free domain by tier: `/random <tier>`
 
-## Все команды
+## All commands
 
-- `/start` — список команд и краткая справка.
-- `/status` — технический статус бота (last lt, аукционы, покупки за день).
-- `/stats` — общая статистика 4N доменов с переключением по тирам и подкатегориям.
-- `/statschart` — график общей статистики (картинка + подпись).
-- `/auctions` — активные аукционы, ставки и время до конца.
-- `/check XXXX` — проверка конкретного 4-значного домена (пример: `/check 0499`).
-- `/summary` — интерактивная сводка (периоды и разделы через кнопки).
-- `/random <тир>` — случайный свободный домен из выбранного тира.
-- `/find <паттерн>` — поиск свободных доменов по маске/подстроке.
-- `/top1k` — статистика первой тысячи (`0000-0999`) + последние продажи.
-- `/pulse1k` — график активности 1K + краткая сводка по первой тысяче.
-- `/profile <TON-адрес|xxxx.ton>` — профиль кошелька/домена с графиком распределения.
-- `/owners` — число уникальных владельцев 4N + топ-10 и график распределения.
-- `/top` — топ владельцев 4N доменов (кнопки: Top 5/10/20).
-- `/mute` — отключить realtime-уведомления в группе (только админ).
-- `/unmute` — включить realtime-уведомления в группе (только админ).
-- `/set_topic` — привязать уведомления к текущему топику/ветке (только админ).
-- `/unset_topic` — отвязать уведомления от топика (только админ).
+- `/start` — command list and short help.
+- `/status` — technical bot status (last lt, auctions, purchases today).
+- `/stats` — overall 4N domain stats with tier and subcategory navigation.
+- `/statschart` — overall stats chart (image + caption).
+- `/auctions` — active auctions, bids, and time remaining.
+- `/check XXXX` — check one 4-digit domain (example: `/check 0499`).
+- `/summary` — interactive summary (periods and sections via buttons).
+- `/random <tier>` — random free domain from the chosen tier.
+- `/find <pattern>` — search free domains by mask or substring.
+- `/top1k` — first-thousand stats (`0000–0999`) + recent sales.
+- `/pulse1k` — 1K activity chart + short first-thousand summary.
+- `/profile <TON-address|xxxx.ton>` — wallet/domain profile with tier distribution chart.
+- `/owners` — unique 4N owner count + top 10 + distribution chart.
+- `/top` — 4N holder leaderboard (buttons: Top 5/10/20).
+- `/mute` — disable realtime notifications in the group (admins only).
+- `/unmute` — enable realtime notifications in the group (admins only).
+- `/set_topic` — bind notifications to the current topic/thread (admins only).
+- `/unset_topic` — unbind notifications from the topic (admins only).
 
-## Поддерживаемые тиры для `/random`
+## Supported tiers for `/random`
 
-Можно использовать синонимы:
+Aliases (case-insensitive where applicable):
 
-- `0`, `t0`, `tier0` -> `Tier-0`
-- `1`, `t1`, `tier1` -> `Tier-1`
-- `2`, `t2`, `tier2` -> `Tier-2`
-- `s`, `spec`, `special`, `спец`, `спецколлекция` -> `Спецколлекция`
-- `r`, `reg`, `regular` -> `Regular`
+- `0`, `t0`, `tier0` → `Tier-0`
+- `1`, `t1`, `tier1` → `Tier-1`
+- `2`, `t2`, `tier2` → `Tier-2`
+- `s`, `spec`, `special`, `спец`, `спецколлекция` → `Special`
+- `r`, `reg`, `regular` → `Regular`
 
-Примеры:
+Examples:
 
 - `/random 2`
 - `/random spec`
 - `/random regular`
 
-## Способы использования `/find`
+## How to use `/find`
 
-### 1) По тиру
+### 1) By tier
 
 - `/find tier0`
 - `/find tier1`
@@ -56,69 +56,69 @@
 - `/find spec`
 - `/find regular`
 
-### 2) По подстроке
+### 2) By substring
 
-- `/find 00` — домены, где встречается `00`.
-- `/find 88` — домены, где встречается `88`.
+- `/find 00` — domains containing `00`.
+- `/find 88` — domains containing `88`.
 
-### 3) По маске (4 символа)
+### 3) By mask (4 characters)
 
-Цифры — фиксированные, буквы — шаблонные позиции.
+Digits are fixed; letters are wildcard positions.
 
-- `/find 19xx` — `19` + две одинаковые цифры.
-- `/find xxyy` — пары (например `1122`, `3344`).
-- `/find xyxy` — чередование (например `1212`, `9090`).
-- `/find x00x` — вид `1001`, `2002` и т.п.
-- `/find 0xyz` — начинается с `0`, дальше 3 разные позиции.
-- `/find abcd` — "лесенка" с неубывающими цифрами.
-- `/find abbc` — вариант лестничного паттерна.
-- `/find 1abc` — начинается с `1`, дальше лестничный шаблон.
+- `/find 19xx` — `19` plus two identical digits.
+- `/find xxyy` — pairs (e.g. `1122`, `3344`).
+- `/find xyxy` — alternation (e.g. `1212`, `9090`).
+- `/find x00x` — shapes like `1001`, `2002`, etc.
+- `/find 0xyz` — starts with `0`, then three flexible positions.
+- `/find abcd` — “stair” with non-decreasing digits.
+- `/find abbc` — another stair-style pattern.
+- `/find 1abc` — starts with `1`, then stair-style template.
 
-### 4) Лесенки по формулам
+### 4) Formula stairs
 
-- `/find f` — показать все типы лесенок и их коды.
-- `/find f CS` — поиск по конкретному коду (пример с `CS`).
+- `/find f` — list all stair types and their codes.
+- `/find f CS` — search by a specific code (example with `CS`).
 
-## Дополнительные сценарии
+## More flows
 
-### Сводка `/summary`
+### Summary `/summary`
 
-- Команда открывает меню с разделами: `Обзор`, `Тиры`, `Аукционы`, `Покупки`.
-- Периоды переключаются кнопками: `За сегодня`, `12ч`, `24ч`, `36ч`, `48ч`, `Неделя`.
-- Для разделов доступны графики через кнопку внутри сообщения.
+- Opens a menu with sections: Overview, Tiers, Auctions, Purchases.
+- Periods via buttons: Today, 12h, 24h, 36h, 48h, Week.
+- Charts are available from buttons inside the message where supported.
 
-### Профиль `/profile`
+### Profile `/profile`
 
-- Принимает TON-адрес (`EQ...`/`UQ...`/raw) или домен вида `7777.ton`.
-- Возвращает карточку кошелька с распределением доменов по тирам и графиком.
+- Accepts a TON address (`EQ...` / `UQ...` / raw) or a domain like `7777.ton`.
+- Returns a wallet card with domain distribution by tier and a chart.
 
-Примеры:
+Examples:
 
 - `/profile UQA2U1fWqfWFKPJfQULI_-b96-b1hlSXXx34Gh5xT3U7GWf9`
 - `/profile 7777.ton`
 
-### Владельцы `/owners` и `/top`
+### Owners `/owners` and `/top`
 
-- `/owners` — агрегированная статистика по уникальным владельцам + график распределения.
-- `/top` — рейтинг холдеров 4N с переключением `Top 5/10/20` кнопками.
+- `/owners` — aggregated unique-owner stats + distribution chart.
+- `/top` — 4N holder ranking with Top 5/10/20 buttons.
 
-## Inline-режим (через @username бота)
+## Inline mode (via `@bot_username`)
 
-Бота можно использовать без перехода в личный чат:
+You can use the bot without opening a private chat:
 
-- `@username_бота 00`
-- `@username_бота xxyy`
-- `@username_бота abcd`
-- `@username_бота 0499`
+- `@your_bot 00`
+- `@your_bot xxyy`
+- `@your_bot abcd`
+- `@your_bot 0499`
 
-Что делает inline:
+Inline behavior:
 
-- Если запрос — ровно 4 цифры, показывает карточку конкретного домена.
-- Если запрос — паттерн/подстрока, показывает список свободных доменов.
+- If the query is exactly 4 digits, shows a card for that domain.
+- If the query is a pattern/substring, shows a list of free domains.
 
-## Что важно помнить
+## Good to know
 
-- Формат 4N домена: ровно 4 цифры (`0000` ... `9999`).
-- Для команд с параметром пробел обязателен: `/check 1234`, `/find xxyy`.
-- Для `/profile` параметр обязателен: `/profile <адрес|домен>`.
-- Админ-команды (`/mute`, `/unmute`, `/set_topic`, `/unset_topic`) работают только в группе/супергруппе и только для админов.
+- 4N domain format: exactly 4 digits (`0000` … `9999`).
+- Commands with arguments need a space: `/check 1234`, `/find xxyy`.
+- `/profile` requires an argument: `/profile <address|domain>`.
+- Admin commands (`/mute`, `/unmute`, `/set_topic`, `/unset_topic`) only work in groups/supergroups and only for admins.
